@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dhw3qjol775ji" path="res://assets/textures/creator/checked.svg" id="1_ecpax"]
 [ext_resource type="Texture2D" uid="uid://b3fg26m8pei4s" path="res://assets/textures/creator/unchecked.svg" id="2_e8ukp"]
+[ext_resource type="FontVariation" uid="uid://c4ad5x0dhckrv" path="res://assets/fonts/default.tres" id="3_t7da0"]
 [ext_resource type="Texture2D" uid="uid://dbcumhwkqrv6y" path="res://assets/textures/creator/submenu.png" id="3_ybbki"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yxoqv"]
@@ -21,7 +22,7 @@ border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.129412, 0.588235, 0.952941, 1)
+border_color = Color(1, 0.1882353, 0, 1)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
@@ -59,6 +60,10 @@ corner_radius_bottom_left = 6
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jbhdc"]
 
+[sub_resource type="DPITexture" id="DPITexture_6q8qg"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"#fff\" fill-opacity=\".75\" d=\"m1 3 2-2 5 5 5-5 2 2-5 5 5 5-2 2-5-5-5 5-2-2 5-5z\"/></svg>
+"
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_byekl"]
 content_margin_left = 8.0
 content_margin_top = 4.0
@@ -70,6 +75,20 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ndpdd"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.3)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qg106"]
 content_margin_left = 4.0
 content_margin_top = 4.0
@@ -80,7 +99,7 @@ border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.129412, 0.588235, 0.952941, 1)
+border_color = Color(1, 0.1882353, 0, 1)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
@@ -96,7 +115,7 @@ border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.129412, 0.588235, 0.952941, 1)
+border_color = Color(1, 0.1882353, 0, 1)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
@@ -115,7 +134,7 @@ corner_radius_top_left = 6
 corner_radius_top_right = 6
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oeey1"]
-bg_color = Color(0.129412, 0.588235, 0.952941, 1)
+bg_color = Color(1, 0.1882353, 0, 1)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
@@ -205,14 +224,24 @@ ItemList/colors/font_selected_color = Color(0.8, 0.8, 0.8, 1)
 ItemList/font_sizes/font_size = 12
 Label/colors/font_color = Color(0.8, 0.8, 0.8, 1)
 Label/font_sizes/font_size = 12
-LineEdit/colors/caret_color = Color(0.129412, 0.588235, 0.952941, 1)
+LineEdit/colors/caret_color = Color(1, 0.1882353, 0, 1)
+LineEdit/colors/clear_button_color = Color(0.875, 0.875, 0.875, 1)
+LineEdit/colors/clear_button_color_pressed = Color(1, 1, 1, 1)
 LineEdit/colors/font_color = Color(0.8, 0.8, 0.8, 1)
+LineEdit/colors/font_outline_color = Color(0, 0, 0, 1)
 LineEdit/colors/font_placeholder_color = Color(0.376471, 0.376471, 0.376471, 1)
-LineEdit/colors/selection_color = Color(0.129412, 0.588235, 0.952941, 1)
+LineEdit/colors/font_selected_color = Color(1, 1, 1, 1)
+LineEdit/colors/font_uneditable_color = Color(0.875, 0.875, 0.875, 0.5)
+LineEdit/colors/selection_color = Color(1, 0.1882353, 0, 1)
 LineEdit/constants/caret_width = 1
+LineEdit/constants/minimum_character_width = 4
+LineEdit/constants/outline_size = 0
 LineEdit/font_sizes/font_size = 12
+LineEdit/fonts/font = ExtResource("3_t7da0")
+LineEdit/icons/clear = SubResource("DPITexture_6q8qg")
 LineEdit/styles/focus = SubResource("StyleBoxFlat_m0jmf")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_byekl")
+LineEdit/styles/read_only = SubResource("StyleBoxFlat_ndpdd")
 MenuButton/colors/font_color = Color(0.8, 0.8, 0.8, 1)
 MenuButton/colors/font_focus_color = Color(0.8, 0.8, 0.8, 1)
 MenuButton/colors/font_hover_color = Color(0.8, 0.8, 0.8, 1)
@@ -241,7 +270,7 @@ PopupMenu/icons/submenu = ExtResource("3_ybbki")
 PopupMenu/styles/hover = SubResource("StyleBoxFlat_oeey1")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_smqtq")
 PopupMenu/styles/separator = SubResource("StyleBoxLine_1r5bi")
-RichTextLabel/colors/selection_color = Color(0.12941177, 0.5882353, 0.9529412, 1)
+RichTextLabel/colors/selection_color = Color(1, 0.1882353, 0, 1)
 RichTextLabel/styles/focus = SubResource("StyleBoxFlat_m0jmf")
 SpinBox/colors/down_hover_icon_modulate = Color(0.8, 0.8, 0.8, 1)
 SpinBox/colors/down_icon_modulate = Color(0.8, 0.8, 0.8, 1)
