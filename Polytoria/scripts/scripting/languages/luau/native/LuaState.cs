@@ -282,38 +282,19 @@ public partial class LuaState : IDisposable
 
 	public bool IsBuffer(int index) => Type(index) == LuaType.Buffer;
 
-	/// <summary>
-	/// Converts the string or number at the index to a string.
-	/// </summary>
-	/// <returns>
-	/// string on success and null on failure.
-	/// </returns>
-	/// <remarks>
-	/// If the value on the stack is a number, it is coerced to a string value,
-	/// changing the value at the index.
-	/// </remarks>
-	public string? ToString(int index)
+	public string? ToString(int index, bool callMetamethod = false)
 	{
-		lock (_lock)
+		if (callMetamethod)
 		{
-			IntPtr str = NativeBindings.lua_tolstring(_state, index, out nint len);
-			return str != 0 ? Marshal.PtrToStringUTF8(str, (int)len) : null;
+			if (CallMetamethod(index, "__tostring"))
+			{
+				index = -1;
+			}
 		}
-	}
-
-	/// <summary>
-	/// Converts the value at the index into a string that is placed on top of
-	/// the stack (original is kept on the stack).
-	/// </summary>
-	/// <remarks>
-	/// This conversion supports the __tostring metamethod of the value.
-	/// </remarks>
-	public string? LauxToString(int index)
-	{
 		lock (_lock)
 		{
-			IntPtr str = NativeBindings.luaL_tolstring(_state, index, out nint len);
-			return str != 0 ? Marshal.PtrToStringUTF8(str, (int)len) : null;
+			IntPtr str = NativeBindings.lua_tolstring(_state, index, out IntPtr _);
+			return str != IntPtr.Zero ? Marshal.PtrToStringUTF8(str) : null;
 		}
 	}
 
