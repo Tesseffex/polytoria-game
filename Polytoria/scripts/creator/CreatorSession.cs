@@ -90,7 +90,7 @@ public partial class CreatorSession : Node, IDisposable
 
 		List<Task> tsks = [];
 
-		SetupLuaDocs();
+		//SetupLuaDocs();
 		ReadInputMap();
 
 		_backupTimer = new();

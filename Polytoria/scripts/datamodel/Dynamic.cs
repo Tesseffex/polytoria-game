@@ -1097,6 +1097,8 @@ public partial class Dynamic : Instance
 				{
 #if CREATOR
 					if (n is ISpatial) continue;
+
+					if (n is Light3D) continue;
 #endif
 					if (n is VisualInstance3D v3d)
 					{
