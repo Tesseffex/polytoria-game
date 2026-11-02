@@ -515,6 +515,7 @@ public sealed partial class Player : NPC
 	{
 		Root.Input.GodotInputEvent -= OnInput;
 		Died.Disconnect(OnPlayerDied);
+		Root.Players.PropertyChanged.Disconnect<string>(OnPlayersPropertyChanged);
 		PlayerMovement = null!;
 		base.PreDelete();
 	}
@@ -802,6 +803,7 @@ public sealed partial class Player : NPC
 	{
 		if (Root.SessionType != World.SessionTypeEnum.Client) { return; }
 		if (!IsLocal || !Root.Input.IsGameFocused) { return; }
+		if (Root.Input.IsPromptKey(@event)) { return; }
 
 		if (@event.IsActionPressed("activate"))
 		{
@@ -848,10 +850,7 @@ public sealed partial class Player : NPC
 
 	private async void OnPlayerDied()
 	{
-		if (IsLocal)
-		{
-			UnequipTool();
-		}
+		UnequipTool();
 		Velocity = Vector3.Zero;
 		if (!Root.Network.IsServer) return; // Respawn on server only
 
@@ -864,6 +863,7 @@ public sealed partial class Player : NPC
 	internal void OnNetReady()
 	{
 		IsLocal = true;
+		Nametag?.UpdateNameTag();
 		SendPing();
 
 		CamAttach = Globals.LoadInstance<Dynamic>(Root);
@@ -1133,7 +1133,10 @@ public sealed partial class Player : NPC
 				NetworkedObject a = item.Clone();
 				if (a is Instance i)
 				{
-					i.Parent = Inventory;
+					if (Backpack.FindChild(i.Name) == null)
+					{
+						i.Parent = Inventory;
+					}
 				}
 			}
 		}
